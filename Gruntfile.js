@@ -7,7 +7,9 @@ module.exports = function(grunt) {
             files: {
               'build/app.js': 'src/**/*.js',
             },
-            options: {}
+            options: {
+              transform: ['node-underscorify']
+            }
           }
         }
     });

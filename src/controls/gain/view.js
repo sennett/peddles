@@ -1,11 +1,10 @@
 var $ = require('jquery');
 var Backbone = require('backbone');
 var _ = require("underscore");
+var template = require("./template.html");
 
 module.exports = Backbone.View.extend({
 	el: "#gainControlTarget",
-	
-	template: _.template($('#gainControl').html()),
 	
 	events: {
 		"click button.up": "increase",
@@ -27,6 +26,6 @@ module.exports = Backbone.View.extend({
 	},
 	
 	render: function(){
-		this.$el.html(this.template(this.model.attributes));
+		this.$el.html(template(this.model.attributes));
 	}
 });
