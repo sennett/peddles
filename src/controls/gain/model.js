@@ -10,6 +10,6 @@ module.exports = Backbone.Model.extend({
 		this.on('change', this.update);
 	},
 	update: function(){
-		gain.gain.value = this.attributes.gain;
+		this.attributes.gainControl.gain.value = this.attributes.gain;
 	}
 });

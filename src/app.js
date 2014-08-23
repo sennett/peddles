@@ -27,4 +27,4 @@ var toggle = function(){
 	running = !running;
 };
 
-var gainView = new GainView({model: new GainModel() });
+var gainView = new GainView({model: new GainModel({gainControl: gain})});
