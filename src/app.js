@@ -15,7 +15,7 @@ gain.connect(context.destination);
 
 var running = false;
 var toggle = function(){
-	if (running)
+	if (running)    
 		oscillator.stop();
 	else {
 		oscillator = context.createOscillator();
@@ -27,4 +27,6 @@ var toggle = function(){
 	running = !running;
 };
 
-var gainView = new GainView({model: new GainModel({gainControl: gain})});
+$("#toggleSound").click(toggle);
+
+new GainView({model: new GainModel({gainControl: gain})});
