@@ -24,10 +24,27 @@
 
 <script>
 
+var context = new AudioContext, oscillator;
+
+var running = false;
+var toggle = function(){
+	if (running)
+		oscillator.stop();
+	else {
+		oscillator = context.createOscillator();
+		oscillator.frequency.value = 200;
+		
+		oscillator.connect(context.destination);
+		oscillator.start(0);
+	}
+	running = !running;
+};
+
 var GainModel = Backbone.Model.extend({
 	defaults: {
 		gain: 0
-	}
+	},
+	
 });
 
 var GainView = Backbone.View.extend({
@@ -60,22 +77,6 @@ var GainView = Backbone.View.extend({
 });
 
 var gainView = new GainView({model: new GainModel() });
-
-var context = new AudioContext, oscillator;
-
-var running = false;
-var toggle = function(){
-	if (running)
-		oscillator.stop();
-	else {
-		oscillator = context.createOscillator();
-		oscillator.frequency.value = 200;
-		
-		oscillator.connect(context.destination);
-		oscillator.start(0);
-	}
-	running = !running;
-};
 
 </script>
 
