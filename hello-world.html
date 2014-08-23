@@ -4,14 +4,62 @@
 
 <head>
 <meta charset="utf-8">
-<title>Hello...</title>
+<title>Hello peddles</title>
 </head>
+
+<script src="/bower_components/jquery/dist/jquery.js"></script>
+<script src="/bower_components/underscore/underscore.js"></script>
+<script src="/bower_components/backbone/backbone.js"></script>
 
 <body>
 
+<script type="text/template" id="gainControl">
+	Gain: <%= gain %>
+	<button class="down">down</button>
+	<button class="up">up</button>
+</script>
+
+<div id="gainControlTarget"></div>
 <button onclick="toggle()">start or stop</button>
 
-<script> 
+<script>
+
+var GainModel = Backbone.Model.extend({
+	defaults: {
+		gain: 0
+	}
+});
+
+var GainView = Backbone.View.extend({
+	el: "#gainControlTarget",
+	
+	template: _.template($('#gainControl').html()),
+	
+	events: {
+		"click button.up": "increase",
+		"click button.down": "decrease"
+	},
+	
+	increase: function(){
+		this.model.set('gain', this.model.attributes.gain + 1);
+	},
+	
+	decrease: function(){
+		this.model.set('gain', this.model.attributes.gain - 1);
+	},
+	
+	initialize: function(){
+		_.bindAll(this, 'render');
+		this.listenTo(this.model, 'change', this.render);
+		this.render();
+	},
+	
+	render: function(){
+		this.$el.html(this.template(this.model.attributes));
+	}
+});
+
+var gainView = new GainView({model: new GainModel() });
 
 var context = new AudioContext, oscillator;
 
@@ -30,7 +78,6 @@ var toggle = function(){
 };
 
 </script>
-
 
 </body>
 </html>
