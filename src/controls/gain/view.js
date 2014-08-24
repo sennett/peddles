@@ -21,7 +21,7 @@ module.exports = Backbone.View.extend({
 	},
 	
 	handleBypass: function(e){
-		this.model.set('bypassed', !this.model.attributes.bypassed);
+		this.model.set('bypassed', e.target.checked);
 	},
 	
 	initialize: function(){
