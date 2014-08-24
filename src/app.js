@@ -9,22 +9,8 @@ var gainModule = require("./controls/gain/module.js");
 
 var context = new AudioContext, oscillator, gainNode;
 
-gainNode = gainModule(context);
+oscillator = context.createOscillator();
+oscillator.frequency.value = 200;
 
-gainNode.connect(context.destination);
-
-var running = false;
-var toggle = function(){
-	if (running)    
-		oscillator.stop();
-	else {
-		oscillator = context.createOscillator();
-		oscillator.frequency.value = 200;
-		
-		oscillator.connect(gainNode);
-		oscillator.start(0);
-	}
-	running = !running;
-};
-
-$("#toggleSound").click(toggle);
+gainModule(context, oscillator, context.destination);
+oscillator.start(0);
