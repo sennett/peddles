@@ -1,15 +1,9 @@
 var View = require('./view.js');
 var Model = require('./model.js');
 
-module.exports = function(audioContext, sourceNode, destinationNode){
-    
-    var gain = audioContext.createGain();
-    sourceNode.connect(gain);
-    gain.connect(destinationNode);
-    
-    new View({model: new Model({
-        gainNode: gain, 
-        sourceNode: sourceNode, 
-        destinationNode: destinationNode
+module.exports = function(gainNode, destination){
+    gainNode.connect(destination);
+    return new View({model: new Model({
+        gainNode: gainNode
     })});
 };

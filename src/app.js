@@ -6,11 +6,16 @@ Backbone.$ = $;
 
 // real requires
 var gainModule = require("./controls/gain/module.js");
+var bypassModule = require("./controls/bypass/module.js");
 
-var context = new AudioContext, oscillator, gainNode;
+var context = new AudioContext, oscillator, gainNode, bypassControl, gainControl;
 
 oscillator = context.createOscillator();
 oscillator.frequency.value = 200;
+gainNode = context.createGain();
+oscillator.connect(gainNode);
 
-gainModule(context, oscillator, context.destination);
+bypassControl = bypassModule(oscillator, gainNode, context.destination);
+gainControl = gainModule(gainNode, context.destination);
+
 oscillator.start(0);

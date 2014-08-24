@@ -4,23 +4,18 @@ var _ = require("underscore");
 var template = require("./template.html");
 
 module.exports = Backbone.View.extend({
-	el: "#gainControlTarget",
+	el: "#bypassTarget",
 	
 	events: {
-		"click .up": "increase",
-		"click .down": "decrease"
+		"click .bypass": "handleBypass"
 	},
 	
-	increase: function(){
-		this.model.set('gain', this.model.attributes.gain + this.model.attributes.step);
-	},
-	
-	decrease: function(){
-		this.model.set('gain', this.model.attributes.gain - this.model.attributes.step);
+	handleBypass: function(e){
+		this.model.set('bypassed', e.target.checked);
 	},
 	
 	initialize: function(){
-		_.bindAll(this, 'render', 'increase', 'decrease');
+		_.bindAll(this, 'render', 'handleBypass');
 		this.listenTo(this.model, 'change', this.render);
 		this.render();
 	},
