@@ -7,8 +7,9 @@ module.exports = Backbone.View.extend({
 	el: "#gainControlTarget",
 	
 	events: {
-		"click button.up": "increase",
-		"click button.down": "decrease"
+		"click .up": "increase",
+		"click .down": "decrease",
+		"click .bypass": "handleBypass"
 	},
 	
 	increase: function(){
@@ -19,8 +20,12 @@ module.exports = Backbone.View.extend({
 		this.model.set('gain', this.model.attributes.gain - this.model.attributes.step);
 	},
 	
+	handleBypass: function(e){
+		this.model.set('bypassed', !this.model.attributes.bypassed);
+	},
+	
 	initialize: function(){
-		_.bindAll(this, 'render', 'increase', 'decrease');
+		_.bindAll(this, 'render', 'increase', 'decrease', 'handleBypass');
 		this.listenTo(this.model, 'change', this.render);
 		this.render();
 	},

@@ -6,5 +6,9 @@ module.exports = function(audioContext, sourceNode, destinationNode){
     sourceNode.connect(gain);
     gain.connect(destinationNode);
     gain.gain.value = 0;
-    new View({model: new Model({gainControl: gain})});
+    new View({model: new Model({
+        gainNode: gain, 
+        sourceNode: sourceNode, 
+        destinationNode: destinationNode
+    })});
 };
