@@ -1,1 +1,1 @@
-Peddles!
+My wanting to know more about how to structure javascript applications.
