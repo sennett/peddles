@@ -4,14 +4,14 @@ var $ = require('jquery');
 var Backbone = require('backbone');
 Backbone.$ = $;
 
-var GainView = require('./controls/gain/view.js');
-var GainModel = require('./controls/gain/model.js');
+// real requires
+var gainModule = require("./controls/gain/module.js");
 
-var context = new AudioContext, oscillator, gain;
+var context = new AudioContext, oscillator, gainNode;
 
-gain = context.createGain();
-gain.gain.value = 0;
-gain.connect(context.destination);
+gainNode = gainModule(context);
+
+gainNode.connect(context.destination);
 
 var running = false;
 var toggle = function(){
@@ -21,12 +21,10 @@ var toggle = function(){
 		oscillator = context.createOscillator();
 		oscillator.frequency.value = 200;
 		
-		oscillator.connect(gain);
+		oscillator.connect(gainNode);
 		oscillator.start(0);
 	}
 	running = !running;
 };
 
 $("#toggleSound").click(toggle);
-
-new GainView({model: new GainModel({gainControl: gain})});
