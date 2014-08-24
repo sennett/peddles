@@ -12,15 +12,15 @@ module.exports = Backbone.View.extend({
 	},
 	
 	increase: function(){
-		this.model.set('gain', this.model.attributes.gain + 1);
+		this.model.set('gain', this.model.attributes.gain + this.model.attributes.step);
 	},
 	
 	decrease: function(){
-		this.model.set('gain', this.model.attributes.gain - 1);
+		this.model.set('gain', this.model.attributes.gain - this.model.attributes.step);
 	},
 	
 	initialize: function(){
-		_.bindAll(this, 'render');
+		_.bindAll(this, 'render', 'increase', 'decrease');
 		this.listenTo(this.model, 'change', this.render);
 		this.render();
 	},
