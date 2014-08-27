@@ -16,8 +16,8 @@ module.exports = Backbone.Model.extend({
 			this.attributes.sourceNode.disconnect(this.attributes.destinationNode);
 			this.attributes.sourceNode.connect(this.attributes.bypassedDestinationNode);
 		} else {
-		    this.attributes.sourceNode.disconnect(this.attributes.bypassedDestinationNode);
-		    this.attributes.sourceNode.connect(this.attributes.destinationNode);
+			this.attributes.sourceNode.disconnect(this.attributes.bypassedDestinationNode);
+			this.attributes.sourceNode.connect(this.attributes.destinationNode);
 		}
 	}
 });
