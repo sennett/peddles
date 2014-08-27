@@ -4,8 +4,6 @@ var template = require("./template.html");
 require('./styles.less');
 
 module.exports = Backbone.View.extend({
-	el: "#gainControlTarget",
-	
 	events: {
 		"click .up": "increase",
 		"click .down": "decrease"

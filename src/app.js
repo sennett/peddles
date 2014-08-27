@@ -3,6 +3,7 @@
 require('backbone').$ = require('jquery');
 
 // real requires
+var $ = require("jquery");
 var gainModule = require("./controls/gain/module.js");
 var bypassModule = require("./controls/bypass/module.js");
 
@@ -13,7 +14,7 @@ oscillator.frequency.value = 200;
 gainNode = context.createGain();
 oscillator.connect(gainNode);
 
-bypassControl = bypassModule(oscillator, gainNode, context.destination);
-gainControl = gainModule(gainNode, context.destination);
+bypassControl = bypassModule(oscillator, gainNode, context.destination, $("#bypassTarget"));
+gainControl = gainModule(gainNode, context.destination, $("#gainControlTarget"));
 
 oscillator.start(0);

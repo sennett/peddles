@@ -3,8 +3,6 @@ var _ = require("underscore");
 var template = require("./template.html");
 
 module.exports = Backbone.View.extend({
-	el: "#bypassTarget",
-	
 	events: {
 		"click .bypass": "handleBypass"
 	},
