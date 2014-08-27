@@ -9,12 +9,11 @@ module.exports = function(grunt) {
             },
             options: {
               transform: ['node-underscorify', 'grunt-less-browserify']
-            },
-            lessBrowserify: {
-                output:  'build/styles.css'
-                //jsAppend: false
             }
           }
+        },
+        lessBrowserify: {
+            //output:  'build/styles.css'
         }
     });
     
