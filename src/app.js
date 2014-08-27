@@ -1,8 +1,6 @@
 // annoying little hack we have to do to get jquery and backbone to 
 // play nice with browserify
-var $ = require('jquery');
-var Backbone = require('backbone');
-Backbone.$ = $;
+require('backbone').$ = require('jquery');
 
 // real requires
 var gainModule = require("./controls/gain/module.js");
