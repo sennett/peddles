@@ -8,7 +8,11 @@ module.exports = function(grunt) {
               'build/app.js': 'src/**/*.js',
             },
             options: {
-              transform: ['node-underscorify']
+              transform: ['node-underscorify', 'grunt-less-browserify']
+            },
+            lessBrowserify: {
+                output:  'build/styles.css'
+                //jsAppend: false
             }
           }
         }

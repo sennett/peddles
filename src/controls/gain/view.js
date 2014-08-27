@@ -1,6 +1,7 @@
 var Backbone = require('backbone');
 var _ = require("underscore");
 var template = require("./template.html");
+require('./styles.less');
 
 module.exports = Backbone.View.extend({
 	el: "#gainControlTarget",
