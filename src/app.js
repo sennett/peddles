@@ -17,6 +17,9 @@ oscillator.connect(gainNode);
 bypassControl = bypassModule(oscillator, gainNode, context.destination);
 bypassControl.setElement($("#bypassTarget")[0]);
 bypassControl.render();
-gainControl = gainModule(gainNode, context.destination, $("#gainControlTarget"));
+
+gainControl = gainModule(gainNode, context.destination);
+gainControl.setElement($("#gainControlTarget")[0]);
+gainControl.render();
 
 oscillator.start(0);

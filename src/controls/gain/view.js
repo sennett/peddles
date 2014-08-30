@@ -20,7 +20,6 @@ module.exports = Backbone.View.extend({
 	initialize: function(){
 		_.bindAll(this, 'render', 'increase', 'decrease');
 		this.listenTo(this.model, 'change', this.render);
-		this.render();
 	},
 	
 	render: function(){
