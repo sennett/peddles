@@ -14,7 +14,6 @@ module.exports = Backbone.View.extend({
 	initialize: function(){
 		_.bindAll(this, 'render', 'handleBypass');
 		this.listenTo(this.model, 'change', this.render);
-		this.render();
 	},
 	
 	render: function(){
